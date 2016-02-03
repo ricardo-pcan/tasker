@@ -1,0 +1,20 @@
+tasker_rails:
+    build: .
+    dockerfile: DockerRails
+    hostname: taskerRails
+    container_name: taskerRails
+    ports:
+        - "3000:3000"
+    links:
+        - tasker_postgres
+    volumes:
+        - ./src:/app
+tasker_postgres:
+    image: postgres:9.4
+    hostname: taskerPostgres
+    container_name: taskerPostgres
+    ports:
+        - "5432"
+    environment:
+        POSTGRES_PASSWORD: tasker
+        POSTGRES_USER: tasker
